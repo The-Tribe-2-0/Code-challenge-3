@@ -6,11 +6,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <title>Flatdango</title>
+    <script src="https://kit.fontawesome.com/81f84d3a0b.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1>FLATDANGO</h1>
-    <h2>List of Movies</h2>
-    <ol></ol>
+ 
+    <h1>FLATDANGO</h1> 
+    <div class="row">
+        <div class="column">
+            <input type="checkbox" id="check">
+        <label for="check">
+            <i class="fa-solid fa-bars" id="btn"></i>
+            <i class="fa-solid fa-xmark" id="cancel"></i>
+        </label>
+    <div class="sidebar">
+        <header>FLATDANGO</header>
+            <ul id="movieList">
+            </ul>
+        </div>
+    </div>
+    <div class="column">
+        <table>
+            <tr>
+                    <th>Properties</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td ></td>
+                </tr>
+                <tr>
+                    <td>Title</td>
+                    <td id="movieTitle"></td>
+                </tr>
+                <tr>
+                    <td>Runtime</td>
+                    <td id="timeTaken"></td>
+                </tr>
+                <tr>
+                    <td>Capacity</td>
+                    <td id="Capaciti"></td>
+                </tr>
+                <tr>
+                    <td>Showtime</td>
+                    <td id="Showtim"></td>
+                </tr>
+                <tr>
+                    <td>Tickets sold</td>
+                    <td id="Ticketsold"></td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td id="Descript"></td>
+                </tr>
+                <tr>
+                    <td>Poster</td>
+                    <td id="Post"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+        
+    
+   <section></section>
+   <script>
+    fetch('http://localhost:3000/films')
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+          for (i = 0; i < data.films.length; i++){
+            var ul = document.getElementById("movieList")
+            var li = document.createElement("li");
+            li.innerHTML = '<li><a href="#"><i class="fa-solid fa-film"></i>'+ data.films[i].title + '</a></li>'
+            ul.appendChild(li)
+          }
+        })
+         
+
+          
+            
+    fetch('http://localhost:3000/films/15')
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+          document.getElementById("movieTitle").innerHTML = data.title
+          document.getElementById("timeTaken").innerHTML = data.runtime
+          document.getElementById("Capaciti").innerHTML = data.capacity
+          document.getElementById("Showtim").innerHTML = data.showtime
+          document.getElementById("Ticketsold").innerHTML = data.tickets_sold
+          document.getElementById("Descript").innerHTML = data.description
+          document.getElementById("Post").innerHTML = data.poster
+          
+          
+
+          
+          });
+          
+    
+        </script>
+
 </body>
-<script type="text/javascript" src="index.js"></script>
 </html>
