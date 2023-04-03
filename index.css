@@ -1,19 +1,22 @@
-
+/* Set default styles for all elements */
 *{
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
 }
+/* Enable smooth scrolling for HTML element */
 html{
     scroll-behavior: smooth;
 }
+/* Set background image for body, adjust size and position */
 body{
     background: url(bg.jpg) no-repeat;
     background-position: center;
     background-size: cover;
     height: 100vh;
 }
+/* Set styles for sidebar */
 .sidebar{
     position: fixed;
     left: -250px;
@@ -23,6 +26,7 @@ body{
     transition: all .5s ease;
     overflow-y: scroll;
 }
+/* Set header styles for sidebar */
 .sidebar header{
     font-size: 22px;
     color: black;
@@ -31,6 +35,7 @@ body{
     background: darkcyan;
     user-select: none;
 }
+/* Set link styles for sidebar */
 .sidebar ul a{
     display: block;
     height: 100%;
@@ -44,21 +49,27 @@ body{
     border-bottom: 1px solid black;
     transition: .5s;
 }
+/* Set link hover styles for sidebar */
 ul li:hover a{
     padding-left: 50px;
 }
+
+/* Set icon styles for sidebar links */
 .sidebar ul a i{
     margin-right: 16px;
 }
+/* Hide checkbox input */
 #check{
     display: none;
 }
+/* Set styles for the hamburger menu button and close button */
 label #btn,label #cancel{
     position: absolute;
     cursor: pointer;
     background: black;
     border-radius: 3px;
 }
+/* Set styles for the hamburger menu button */
 label #btn{
     left: 40px;
     top: 25px;
@@ -67,6 +78,8 @@ label #btn{
     padding: 6px 12px;
     transition: all .5s;
 }
+
+/* Set styles for the close button */
 label #cancel{
     z-index: 1111;
     left: -195px;
@@ -76,22 +89,27 @@ label #cancel{
     padding: 4px 9px;
     transition: all .5s ease;
 }
+/* Show sidebar when checkbox is checked */
 #check:checked ~ .sidebar{
     left: 0;
 }
+/* Move hamburger menu button when checkbox is checked */
 #check:checked ~ label #btn{
     left: 250px;
     opacity: 0;
     pointer-events: none;
 
 }
+/* Move close button when checkbox is checked */
 #check:checked ~ label #cancel{
     left: 195px;
 }
+/* Move main content section when checkbox is checked */
 #check:checked ~ section{
     margin-left: 250px;
 }
 
+/* Set styles for table elements */
 table, th, td{
     color: antiquewhite;
     width: 800px;
@@ -103,22 +121,19 @@ table, th, td{
     border-collapse: collapse;
 
 }
-/* .column {
-    float: left;
-    width: 30%;
-  } */
-  
-  /* Clear floats after the columns */
+/* Clear floats for row elements */
   .row:after {
     content: "";
     display: table;
     clear: both;
   }
+  /* Styling for the button that allows buying a ticket */
 .buy-ticket-btn{
     background-color: rgb(48, 156, 48);
     height: 40px;
     color: antiquewhite;
 }
+/* Style for the h1 heading */
 h1{
     color: chartreuse;
 }
