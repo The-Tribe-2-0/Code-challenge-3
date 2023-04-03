@@ -15,12 +15,13 @@ body{
     height: 100vh;
 }
 .sidebar{
-    /* position: fixed; */
+    position: fixed;
     left: -250px;
-    /* width: 250px; */
+    width: 250px;
     height: 100%;
     background: rgb(17, 15, 19);
     transition: all .5s ease;
+    overflow-y: scroll;
 }
 .sidebar header{
     font-size: 22px;
@@ -90,14 +91,9 @@ label #cancel{
 #check:checked ~ section{
     margin-left: 250px;
 }
-/* section{
-    background: url(bg.jpg) no-repeat;
-    background-position: center;
-    background-size: cover;
-    height: 100vh;
-    transition: all .5s;
-} */
+
 table, th, td{
+    color: antiquewhite;
     width: 800px;
     margin: auto;
     font-size: 15px;
@@ -107,10 +103,10 @@ table, th, td{
     border-collapse: collapse;
 
 }
-.column {
+/* .column {
     float: left;
     width: 30%;
-  }
+  } */
   
   /* Clear floats after the columns */
   .row:after {
