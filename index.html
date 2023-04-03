@@ -4,26 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to the external stylesheet -->
     <link rel="stylesheet" href="index.css">
     <title>Flatdango</title>
+    <!--Link to Font Awesome-->
     <script src="https://kit.fontawesome.com/81f84d3a0b.js" crossorigin="anonymous"></script>
 </head>
 <body>
- 
-    <h1>FLATDANGO</h1> 
+ <h1>FLATDANGO</h1> 
+    <!--Sidebar-->
     <div class="row">
         <div class="column">
+            <!--Checkbox used for toggle sidebar-->
             <input type="checkbox" id="check">
+            <!--Label for checkbox-->
         <label for="check">
             <i class="fa-solid fa-bars" id="btn"></i>
             <i class="fa-solid fa-xmark" id="cancel"></i>
         </label>
+        <!--Sidebar content-->
     <div class="sidebar">
         <header>FLATDANGO</header>
+        <!--Unordered list for the movie titles-->
             <ul id="movieList">
             </ul>
         </div>
     </div>
+   <!--Displaying the movie properties table and a button to buy tickets. -->
     <div class="column">
         <table>
             <tr>
@@ -65,22 +72,11 @@
             </table>
             <div style="text-align: center;">
                 <button id="ticketButton" class="buy-ticket-btn" onclick="buyTickets()">Buy Ticket</button>
-
-
             </div>
         </div>
     </div>
-
-    <div id="The Giant Gila Monster">
-
-    </div>
-
-    
-        
-    
-   <section></section>
-   <script>
-    let currentMovie = null
+<script>
+let currentMovie = null
     fetch('http://localhost:3000/films')
         .then(response => response.json())
         .then(data => {
@@ -92,21 +88,20 @@
             ul.appendChild(li)
           }
         })
-
-        function buyTickets() {
+function buyTickets() {
   const buyTicketButton = document.getElementById('ticketButton');
   const availableTicketsElement = document.getElementById('availableTickets');
-
+// Decrement the number of tickets sold for the current movie
   currentMovie.tickets_sold -= 1;
   document.getElementById('Ticketsold').innerHTML = currentMovie.tickets_sold;
-  
+  // If all tickets are sold out, disable the button and update text
   if (currentMovie.tickets_sold < 1) {
     buyTicketButton.disabled = true;
     buyTicketButton.innerHTML = 'Sold Out';
   }
 }
-   
-        function myFunction(value1) {
+// Function to fetch movie data and update HTML elements with movie information
+function myFunction(value1) {
             fetch('http://localhost:3000/films/'+ value1)
         .then(response => response.json())
         .then(data => {
@@ -126,8 +121,8 @@
         }
 });   
 }
-         
-    fetch('http://localhost:3000/films/3')
+// Fetch movie data from server and update the movie details section with the data
+         fetch('http://localhost:3000/films/3')
         .then(response => response.json())
         .then(data => {
           console.log(data)
@@ -140,11 +135,6 @@
           document.getElementById("Post").innerHTML = data.poster
           currentMovie = data
           });
-
-          
-
-
-        </script>
-
+</script>
 </body>
 </html>
