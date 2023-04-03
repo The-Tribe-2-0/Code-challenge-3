@@ -114,3 +114,11 @@ table, th, td{
     display: table;
     clear: both;
   }
+.buy-ticket-btn{
+    background-color: rgb(48, 156, 48);
+    height: 40px;
+    color: antiquewhite;
+}
+h1{
+    color: chartreuse;
+}

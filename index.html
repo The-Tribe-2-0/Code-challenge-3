@@ -63,16 +63,24 @@
                     <td id="Post"></td>
                 </tr>
             </table>
+            <div style="text-align: center;">
+                <button id="ticketButton" class="buy-ticket-btn" onclick="buyTickets()">Buy Ticket</button>
+
+
+            </div>
         </div>
     </div>
 
     <div id="The Giant Gila Monster">
 
     </div>
+
+    
         
     
    <section></section>
    <script>
+    let currentMovie = null
     fetch('http://localhost:3000/films')
         .then(response => response.json())
         .then(data => {
@@ -84,7 +92,20 @@
             ul.appendChild(li)
           }
         })
-         
+
+        function buyTickets() {
+  const buyTicketButton = document.getElementById('ticketButton');
+  const availableTicketsElement = document.getElementById('availableTickets');
+
+  currentMovie.tickets_sold -= 1;
+  document.getElementById('Ticketsold').innerHTML = currentMovie.tickets_sold;
+  
+  if (currentMovie.tickets_sold < 1) {
+    buyTicketButton.disabled = true;
+    buyTicketButton.innerHTML = 'Sold Out';
+  }
+}
+   
         function myFunction(value1) {
             fetch('http://localhost:3000/films/'+ value1)
         .then(response => response.json())
@@ -97,13 +118,15 @@
           document.getElementById("Ticketsold").innerHTML = data.tickets_sold
           document.getElementById("Descript").innerHTML = data.description
           document.getElementById("Post").innerHTML = data.poster
-
-          });   
+          currentMovie = data
+          if (data.tickets_sold > 0) {
+            let btn = document.getElementById('ticketButton')
+            btn.disabled = false;
+            btn.textContent = 'Buy Ticket';
+        }
+});   
 }
-
-
-          
-            
+         
     fetch('http://localhost:3000/films/3')
         .then(response => response.json())
         .then(data => {
@@ -115,12 +138,12 @@
           document.getElementById("Ticketsold").innerHTML = data.tickets_sold
           document.getElementById("Descript").innerHTML = data.description
           document.getElementById("Post").innerHTML = data.poster
-
+          currentMovie = data
           });
 
-      
           
-    
+
+
         </script>
 
 </body>
