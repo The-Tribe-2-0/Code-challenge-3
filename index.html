@@ -24,7 +24,7 @@
         </label>
         <!--Sidebar content-->
     <div class="sidebar">
-        <header>FLATDANGO</header>
+        <header>Flatiron Movie Theater</header>
         <!--Unordered list for the movie titles-->
             <ul id="movieList">
             </ul>
@@ -33,13 +33,9 @@
    <!--Displaying the movie properties table and a button to buy tickets. -->
     <div class="column">
         <table>
-            <tr>
-                    <th>Properties</th>
-                    <th>Description</th>
-                </tr>
                 <tr>
                     <td></td>
-                    <td ></td>
+                    <td id="Post"></td>
                 </tr>
                 <tr>
                     <td>Title</td>
@@ -65,10 +61,6 @@
                     <td>Description</td>
                     <td id="Descript"></td>
                 </tr>
-                <tr>
-                    <td>Poster</td>
-                    <td id="Post"></td>
-                </tr>
             </table>
             <div style="text-align: center;">
                 <button id="ticketButton" class="buy-ticket-btn" onclick="buyTickets()">Buy Ticket</button>
@@ -88,6 +80,9 @@ let currentMovie = null
             ul.appendChild(li)
           }
         })
+        
+
+
 function buyTickets() {
   const buyTicketButton = document.getElementById('ticketButton');
   const availableTicketsElement = document.getElementById('availableTickets');
@@ -100,29 +95,35 @@ function buyTickets() {
     buyTicketButton.innerHTML = 'Sold Out';
   }
 }
-// Function to fetch movie data and update HTML elements with movie information
+// Function to fetch movie data and update HTML elements with movie information and display movie poster
 function myFunction(value1) {
-            fetch('http://localhost:3000/films/'+ value1)
-        .then(response => response.json())
-        .then(data => {
-          console.log(data)
-          document.getElementById("movieTitle").innerHTML = data.title
-          document.getElementById("timeTaken").innerHTML = data.runtime
-          document.getElementById("Capaciti").innerHTML = data.capacity
-          document.getElementById("Showtim").innerHTML = data.showtime
-          document.getElementById("Ticketsold").innerHTML = data.tickets_sold
-          document.getElementById("Descript").innerHTML = data.description
-          document.getElementById("Post").innerHTML = data.poster
-          currentMovie = data
-          if (data.tickets_sold > 0) {
-            let btn = document.getElementById('ticketButton')
-            btn.disabled = false;
-            btn.textContent = 'Buy Ticket';
-        }
-});   
+  fetch('http://localhost:3000/films/'+ value1)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      document.getElementById("movieTitle").innerHTML = data.title
+      document.getElementById("timeTaken").innerHTML = data.runtime
+      document.getElementById("Capaciti").innerHTML = data.capacity
+      document.getElementById("Showtim").innerHTML = data.showtime
+      document.getElementById("Ticketsold").innerHTML = data.tickets_sold
+      document.getElementById("Descript").innerHTML = data.description
+      
+      // Get the movie poster element and set its source to the poster URL
+      const posterElement = document.getElementById("Post");
+      const posterImg = document.getElementById("movieImage");
+      posterImg.src = data.poster;
+      posterImg.alt = data.title + " Poster";
+      
+      currentMovie = data
+      if (data.tickets_sold > 0) {
+        let btn = document.getElementById('ticketButton')
+        btn.disabled = false;
+        btn.textContent = 'Buy Ticket';
+      }
+  });   
 }
 // Fetch movie data from server and update the movie details section with the data
-         fetch('http://localhost:3000/films/3')
+         fetch('http://localhost:3000/films/1')
         .then(response => response.json())
         .then(data => {
           console.log(data)
@@ -132,8 +133,15 @@ function myFunction(value1) {
           document.getElementById("Showtim").innerHTML = data.showtime
           document.getElementById("Ticketsold").innerHTML = data.tickets_sold
           document.getElementById("Descript").innerHTML = data.description
-          document.getElementById("Post").innerHTML = data.poster
           currentMovie = data
+
+          const posterElement = document.getElementById("Post");
+          const posterImg = document.createElement("img");
+          posterImg.id = "movieImage"
+          posterImg.src = data.poster;
+          posterElement.appendChild(posterImg)
+          console.log(posterImg)
+      
           });
 </script>
 </body>

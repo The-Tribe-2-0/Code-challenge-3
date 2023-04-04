@@ -137,3 +137,7 @@ table, th, td{
 h1{
     color: chartreuse;
 }
+img{
+    height: 350px;
+    width: 530px;
+}
